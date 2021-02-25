@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Youtube Player</string>
+    <string name="buttonAdded">Button added</string>
 </resources>
