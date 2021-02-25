@@ -2,7 +2,6 @@ package ru.talkinglessons.youtubeplayer
 
 import android.os.Bundle
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.android.youtube.player.YouTubeBaseActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
