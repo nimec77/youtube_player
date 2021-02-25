@@ -36,11 +36,13 @@ class YoutubeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListen
     }
 
     override fun onInitializationSuccess(
-        p0: YouTubePlayer.Provider?,
-        p1: YouTubePlayer?,
-        p2: Boolean
+        provider: YouTubePlayer.Provider?,
+        youtubePlayer: YouTubePlayer?,
+        wasRestored: Boolean
     ) {
-        TODO("Not yet implemented")
+        if (!wasRestored) {
+            youtubePlayer?.cueVideo(YOUTUBE_VIDEO_ID)
+        }
     }
 
     override fun onInitializationFailure(
