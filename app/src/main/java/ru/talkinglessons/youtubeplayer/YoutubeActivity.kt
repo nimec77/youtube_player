@@ -2,6 +2,7 @@ package ru.talkinglessons.youtubeplayer
 
 import android.os.Bundle
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.android.youtube.player.YouTubeBaseActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
@@ -30,6 +31,8 @@ class YoutubeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListen
             ViewGroup.LayoutParams.MATCH_PARENT
         )
         layout.addView(playerView)
+
+        playerView.initialize(getString(R.string.GOOGLE_API_KEY), this)
     }
 
     override fun onInitializationSuccess(
@@ -41,9 +44,16 @@ class YoutubeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListen
     }
 
     override fun onInitializationFailure(
-        p0: YouTubePlayer.Provider?,
-        p1: YouTubeInitializationResult?
+        provider: YouTubePlayer.Provider?,
+        youtubeInitilizstionResult: YouTubeInitializationResult?
     ) {
-        TODO("Not yet implemented")
+        val REQUEST_CODE = 0
+
+        if (youtubeInitilizstionResult?.isUserRecoverableError == true) {
+            youtubeInitilizstionResult.getErrorDialog(this, REQUEST_CODE)?.show()
+        } else {
+            val errorMessage = "There was an error initializing the YoutubePlayer ($youtubeInitilizstionResult)"
+            Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show()
+        }
     }
 }
